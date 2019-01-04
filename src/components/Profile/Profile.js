@@ -4,7 +4,7 @@ import React from 'react';
 class Profile extends React.Component {
   render() {
     return (
-      <div className="listings">
+      <div className="listings col">
         <h2>Profile</h2>
       </div>
     );
