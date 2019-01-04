@@ -8,14 +8,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from '../components/Profile/Profile';
 import Form from '../components/Form/Form';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
-import PortalNavbar from '../components/PortalNavbar/PortalNavbar'; 
+import Example from '../components/PortalNavbar/PortalNavbar'; 
 import tutorialRequests from '../helpers/data/tutorialRequests';
 import blogRequests from '../helpers/data/blogRequest';
 
 // import Buttons from '../components/Buttons/Buttons';
-import Tutorials from '../components/Tutorials/Tutorials';
+// import Tutorials from '../components/Tutorials/Tutorials';
 // import TutorialButton from '../components/Buttons/TutorialButton';
-import Blogs from '../components/Blogs/Blogs';
+// import Blogs from '../components/Blogs/Blogs';
 
 import './App.scss';
 import authRequests from '../helpers/data/authRequests';
@@ -97,17 +97,17 @@ deleteOneBlog = (blogId) => {
     .catch(err => console.error('error with delte single', err));
 }
 
-clickEvent = () => {
-  this.setState({
-    button: !this.state.button,
-  });
-};
+// clickEvent = () => {
+//   this.setState({
+//     button: !this.state.button,
+//   });
+// };
 
-clickBlog = () => {
-  this.setState({
-    blog_tab: !this.state.button,
-  });
-};
+// clickBlog = () => {
+//   this.setState({
+//     blog_tab: !this.state.button,
+//   });
+// };
 
 render() {
   const logoutClickEvent = () => {
@@ -127,14 +127,16 @@ render() {
   return (
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
-        <PortalNavbar
+        <Form />
+        <Example
           tutorials={this.state.tutorials}
           deleteSingleTutorial={this.deleteOne}
           clickEvent={this.clickEvent}
+          blogs={this.state.blogs}
+          deleteSingleBlog={this.deleteOneBlog}
         />
         <div className="row">
         <Profile />
-        <Form />
         </div>
         <div>
           {/* <button onClick={this.clickEvent}>Tutorial</button>
@@ -148,11 +150,11 @@ render() {
           deleteSingleTutorial={this.deleteOne}
         /> */}
         {/* <TutorialButton clickTutorial={this.clickEvent}/> */}
-        <button onClick={this.clickBlog}>Blogs</button>
-        {!this.state.blog_tab && <Blogs
+        {/* <button onClick={this.clickBlog}>Blogs</button> */}
+        {/* {!this.state.blog_tab && <Blogs
           blogs={this.state.blogs}
           deleteSingleBlog={this.deleteOneBlog}
-        />}
+        />} */}
       </div>
       </div>
   );

@@ -30,13 +30,15 @@ class TutorialItem extends React.Component {
           </div>
         );
       }
-      return <span className="col-2"></span>;
+      return <span className="col space"></span>;
     };
     return (
       <li className="tutorial-item text-center">
-        <span className="col-3">{tutorial.name}</span>
-        <span className="col-7">{tutorial.url}</span>
+        <span className="col-2">{tutorial.name}</span>
+        <span className="col-6">{tutorial.url}</span>
         {makeButtons()}
+        <input type="checkbox"></input>
+        <label>Done</label>
       </li>
     );
   }

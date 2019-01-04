@@ -21,7 +21,6 @@ class Blogs extends React.Component {
     ));
     return (
       <div className="blogs col">
-        <h2>Blogs</h2>
         <ul>{blogsItemComponents}</ul>
       </div>
     );
