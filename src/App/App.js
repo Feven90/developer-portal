@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from '../components/Profile/Profile';
 import Form from '../components/Form/Form';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
-import PortalNavbar from '../components/PortalNavbar/PortalNavbar'; 
+import Example from '../components/PortalNavbar/PortalNavbar'; 
 import tutorialRequests from '../helpers/data/tutorialRequests';
 import blogRequests from '../helpers/data/blogRequest';
 
@@ -127,10 +127,12 @@ render() {
   return (
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
-        <PortalNavbar
+        <Example
           tutorials={this.state.tutorials}
           deleteSingleTutorial={this.deleteOne}
           clickEvent={this.clickEvent}
+          blogs={this.state.blogs}
+          deleteSingleBlog={this.deleteOneBlog}
         />
         <div className="row">
         <Profile />
@@ -148,11 +150,11 @@ render() {
           deleteSingleTutorial={this.deleteOne}
         /> */}
         {/* <TutorialButton clickTutorial={this.clickEvent}/> */}
-        <button onClick={this.clickBlog}>Blogs</button>
-        {!this.state.blog_tab && <Blogs
+        {/* <button onClick={this.clickBlog}>Blogs</button> */}
+        {/* {!this.state.blog_tab && <Blogs
           blogs={this.state.blogs}
           deleteSingleBlog={this.deleteOneBlog}
-        />}
+        />} */}
       </div>
       </div>
   );
