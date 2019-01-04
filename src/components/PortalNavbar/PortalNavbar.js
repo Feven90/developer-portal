@@ -27,7 +27,7 @@ class Example extends React.Component {
 
   render() {
     const {
-      tutorials, deleteOne, blogs, deleteOneBlog,
+      tutorials, deleteSingleTutorial, blogs, deleteSingleBlog,
     } = this.props;
     return (
       <div>
@@ -52,11 +52,15 @@ class Example extends React.Component {
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
             <Row>
-              <Col sm="12">
+              <Col sm="6">
+              <Card body>
+                  <CardText>
                 <Tutorials
           tutorials={tutorials}
-          deleteSingleTutorial={deleteOne}
+          deleteSingleTutorial={deleteSingleTutorial}
         />
+                  </CardText>
+              </Card>
               </Col>
             </Row>
           </TabPane>
@@ -64,22 +68,12 @@ class Example extends React.Component {
             <Row>
               <Col sm="6">
                 <Card body>
-                  <CardTitle>Blogs</CardTitle>
                   <CardText>
                     <Blogs
           blogs={blogs}
-          deleteSingleBlog={deleteOneBlog}
+          deleteSingleBlog={deleteSingleBlog}
         />
         </CardText>
-                  <Button>Go somewhere</Button>
-                </Card>
-              </Col>
-              <Col sm="6">
-                <Card body>
-                  <CardTitle>Special Title Treatment</CardTitle>
-                  <CardText>With supporting text below as a natural
-                    lead-in to additional content.</CardText>
-                  <Button>Go somewhere</Button>
                 </Card>
               </Col>
             </Row>

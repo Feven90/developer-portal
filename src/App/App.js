@@ -13,9 +13,9 @@ import tutorialRequests from '../helpers/data/tutorialRequests';
 import blogRequests from '../helpers/data/blogRequest';
 
 // import Buttons from '../components/Buttons/Buttons';
-import Tutorials from '../components/Tutorials/Tutorials';
+// import Tutorials from '../components/Tutorials/Tutorials';
 // import TutorialButton from '../components/Buttons/TutorialButton';
-import Blogs from '../components/Blogs/Blogs';
+// import Blogs from '../components/Blogs/Blogs';
 
 import './App.scss';
 import authRequests from '../helpers/data/authRequests';
@@ -97,17 +97,17 @@ deleteOneBlog = (blogId) => {
     .catch(err => console.error('error with delte single', err));
 }
 
-clickEvent = () => {
-  this.setState({
-    button: !this.state.button,
-  });
-};
+// clickEvent = () => {
+//   this.setState({
+//     button: !this.state.button,
+//   });
+// };
 
-clickBlog = () => {
-  this.setState({
-    blog_tab: !this.state.button,
-  });
-};
+// clickBlog = () => {
+//   this.setState({
+//     blog_tab: !this.state.button,
+//   });
+// };
 
 render() {
   const logoutClickEvent = () => {
@@ -127,6 +127,7 @@ render() {
   return (
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
+        <Form />
         <Example
           tutorials={this.state.tutorials}
           deleteSingleTutorial={this.deleteOne}
@@ -136,7 +137,6 @@ render() {
         />
         <div className="row">
         <Profile />
-        <Form />
         </div>
         <div>
           {/* <button onClick={this.clickEvent}>Tutorial</button>
