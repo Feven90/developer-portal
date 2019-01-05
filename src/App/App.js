@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from '../components/Profile/Profile';
 import Form from '../components/Form/Form';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
-import Example from '../components/PortalNavbar/PortalNavbar'; 
+import Example from '../components/PortalNavbar/PortalNavbar';
 import tutorialRequests from '../helpers/data/tutorialRequests';
 import blogRequests from '../helpers/data/blogRequest';
 
@@ -26,8 +26,8 @@ class App extends Component {
       github_username: '',
       tutorials: [],
       blogs: [],
-      button: true,
-      blog_tab: true,
+      radioButton: '',
+      // blog_tab: true,
     };
 
     componentDidMount() {
@@ -108,6 +108,36 @@ deleteOneBlog = (blogId) => {
 //     blog_tab: !this.state.button,
 //   });
 // };
+handleChange = (event) => {
+  this.setState({
+    radioButton: event.target.value,
+  });
+}
+
+formSubmitEvent = (newMaterial) => {
+  const { radioButton } = this.state;
+  if (radioButton === 'radio_tutorials') {
+    tutorialRequests.postRequest(newMaterial)
+      .then(() => {
+        tutorialRequests.getRequest()
+          .then((tutorials) => {
+            this.setState({ tutorials }); // after we submit the form lisings will be updatede
+          });
+      })
+      .catch(err => console.error('error with listing post', err));
+  }
+
+  if (radioButton === 'radio_blogs') {
+    blogRequests.postRequest(newMaterial)
+      .then(() => {
+        blogRequests.getRequest()
+          .then((blogs) => {
+            this.setState({ blogs }); // after we submit the form lisings will be updatede
+          });
+      })
+      .catch(err => console.error('error with listing post', err));
+  }
+}
 
 render() {
   const logoutClickEvent = () => {
@@ -127,7 +157,12 @@ render() {
   return (
       <div className="App">
         <MyNavbar isAuthed={this.state.authed} logoutClickEvent={logoutClickEvent} />
-        <Form />
+        {/* <Form onSubmit={this.formSubmitEvent} */}
+          {/* // onClick={this.radioButton} */}
+        {/* /> */}
+        <Form radioButton={this.props}
+        onSubmit={this.formSubmitEvent}
+        handleChange={this.handleChange} />
         <Example
           tutorials={this.state.tutorials}
           deleteSingleTutorial={this.deleteOne}
