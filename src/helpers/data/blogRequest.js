@@ -22,7 +22,10 @@ const getBlogRequest = () => new Promise((resolve, reject) => {
 
 const deleteBlogs = blogId => axios.delete(`${firebaseUrl}/blogs/${blogId}.json`);
 
+const postRequest = blog => axios.post(`${firebaseUrl}/blogs.json`, blog);
+
 export default {
   getBlogRequest,
   deleteBlogs,
+  postRequest,
 };
