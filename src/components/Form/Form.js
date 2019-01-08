@@ -1,6 +1,6 @@
 import React from 'react';
 import propTypes from 'prop-types';
-// import './ListingForm.scss';
+import './Form.scss';
 import authRequests from '../../helpers/data/authRequests';
 // import tutorialRequest from '../../helpers/data/listingRequests';
 
@@ -77,15 +77,9 @@ class Form extends React.Component {
   render() {
     const { newMaterial } = this.state;
     const { isEditing, radioButton, handleChange } = this.props;
-    const title = () => {
-      if (isEditing) {
-        return <h2>Edit Listing: </h2>;
-      }
-      return <h2>Add New Listing: </h2>;
-    };
     return (
       <div className="listing-form col">
-        {title()}
+       <h2>Add New Material: </h2>
       <form onSubmit={this.formSubmit}>
       <div className="form-group">
         <label htmlFor="address">Name:</label>
@@ -103,27 +97,59 @@ class Form extends React.Component {
         <input type="input"></input>
        <label>Link:</label>
         <input type="input"></input> */}
-          <div>
-            <input type="radio"
-              id="radio_tutorials"
-              // name="radio_tutorials"
-              value="radio_tutorials"
-              checked={radioButton === 'radio_tutorials'}
-              onChange={handleChange}
-            />
-              <label>Tutorials</label>
-            <input type="radio"
-              id="radio_blogs"
-              name="radio_blogs"
-              value="radio_blogs"
-              checked={radioButton === 'radio_blogs'}
-              onChange={handleChange}
+          <div className="radio_wrap">
+            <div className="radio_buttons">
+            <label>
+              <input type="radio"
+                className="radio"
+                id="radio_tutorials"
+                name="radio_tutorials"
+                value="radio_tutorials"
+                checked={radioButton === 'radio_tutorials'}
+                onChange={handleChange}
               />
-            <label>Blogs</label>
-            <input type="radio" id="resources" name="resources" value="resources"/>
-              <label>Resources</label>
-            <input type="radio" id="podcasts" name="podcasts" value="podcasts"/>
-              <label>Podcasts</label>
+              Tutorials
+            </label>
+              </div>
+              <div className="radio_buttons">
+            <label>
+              <input type="radio"
+                id="radio_blogs"
+                className="radio"
+                name="radio_blogs"
+                value="radio_blogs"
+                checked={radioButton === 'radio_blogs'}
+                onChange={handleChange}
+              />
+              Blogs
+            </label>
+            </div>
+            <div className="radio_buttons">
+            <label>
+              <input type="radio"
+                className="radio"
+                id="radio_resources"
+                name="radio_resources"
+                value="radio_resources"
+                checked={radioButton === 'radio_resources'}
+                onChange={handleChange}
+              />
+            Resources
+            </label>
+            </div>
+            <div className="radio_buttons">
+            <label>
+              <input type="radio"
+                className="radio"
+                id="radio_podcasts"
+                name="radio_podcasts"
+                value="radio_podcasts"
+                checked={radioButton === 'radio_podcasts'}
+                onChange={handleChange}
+              />
+              Podcasts
+            </label>
+              </div>
               </div>
         <button className="btn btn-danger">+</button>
       </form>
