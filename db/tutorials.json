@@ -42,5 +42,22 @@
       "url": "https://photos.zillowstatic.com/p_h/ISa9lb1bdf7oy60000000000.jpg",
       "uid": "ib7BqbK8pcUAKBCO6YzCv5uuCyD2"
     }
+  },
+    "podcasts": {
+      "podcast1": {
+        "name": "unchainingme",
+        "url":  "https://www.unchainingme.com/blog",
+        "uid": "12345"
+      },
+      "podcast2": {
+        "name": "C#",
+        "url": "https://photos.zillowstatic.com/p_h/ISa9lb1bdf7oy60000000000.jpg",
+        "uid": "12345"
+      },
+      "podcast3": {
+        "name": "PHP",
+        "url": "https://photos.zillowstatic.com/p_h/ISa9lb1bdf7oy60000000000.jpg",
+        "uid": "ib7BqbK8pcUAKBCO6YzCv5uuCyD2"
+      }
   }
 }

@@ -29,21 +29,4 @@ class Tutorials extends React.Component {
   }
 }
 
-// class TutorialButton extends React.Component {
-//   render() {
-//     const { buttons } = this.props;
-//     const tutorialEvent = (e) => {
-//       e.preventDefault();
-//     };
-
-//     return (
-//       <div className="buttons col">
-//         <button onClick={tutorialEvent}>Tutorials</button>
-//         {buttons}
-//       <Tutorials />
-//       </div>
-//     );
-//   }
-// }
-
 export default Tutorials;

@@ -3,11 +3,12 @@ import React from 'react';
 import {
   TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,
 } from 'reactstrap';
+import classnames from 'classnames';
 import Tutorials from '../Tutorials/Tutorials';
 import Blogs from '../Blogs/Blogs';
-import classnames from 'classnames';
+import Podcasts from '../Podcasts/Podcasts';
 
-class Example extends React.Component {
+class TabsComponent extends React.Component {
   constructor(props) {
     super(props);
 
@@ -28,6 +29,7 @@ class Example extends React.Component {
   render() {
     const {
       tutorials, deleteSingleTutorial, blogs, deleteSingleBlog,
+      deleteSinglePodcast, podcasts,
     } = this.props;
     return (
       <div>
@@ -48,11 +50,19 @@ class Example extends React.Component {
               Blogs
             </NavLink>
           </NavItem>
+          <NavItem>
+            <NavLink
+              className={classnames({ active: this.state.activeTab === '3' })}
+              onClick={() => { this.toggle('3'); }}
+            >
+              Podcasts
+            </NavLink>
+          </NavItem>
         </Nav>
         <TabContent activeTab={this.state.activeTab}>
           <TabPane tabId="1">
             <Row>
-              <Col sm="6">
+              <Col sm="15">
               <Card body>
                   <CardText>
                 <Tutorials
@@ -66,12 +76,26 @@ class Example extends React.Component {
           </TabPane>
           <TabPane tabId="2">
             <Row>
-              <Col sm="6">
+              <Col sm="15">
                 <Card body>
                   <CardText>
                     <Blogs
           blogs={blogs}
           deleteSingleBlog={deleteSingleBlog}
+        />
+        </CardText>
+                </Card>
+              </Col>
+            </Row>
+          </TabPane>
+          <TabPane tabId="3">
+            <Row>
+              <Col sm="15">
+                <Card body>
+                  <CardText>
+                    <Podcasts
+          podcasts={podcasts}
+          deleteSinglePodcast={deleteSinglePodcast}
         />
         </CardText>
                 </Card>
@@ -84,25 +108,4 @@ class Example extends React.Component {
   }
 }
 
-// render(<ControlledTabs />);
-
-// defined variable you will see in dom
-// render() {
-// const { isAuthed } = this.props.isAuthed;
-//   const {
-//     button, tutorials, clickEvent, deleteSingleTutorial,
-//   } = this.props;
-//   return (
-//       <div className="my-navbar">
-//        <Tabs>
-//          <div label="Tutorials" onClick={clickEvent} >
-//   <Tutorials tutorials={tutorials} deleteSingleTutorial={deleteSingleTutorial} />>
-//  </div>
-//  </Tabs>
-//               <Tutorials tutorials={tutorials} deleteSingleTutorial={deleteSingleTutorial} />
-//       </div>
-//   );
-// }
-// }
-
-export default Example;
+export default TabsComponent;

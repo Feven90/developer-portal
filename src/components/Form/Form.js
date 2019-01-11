@@ -1,12 +1,12 @@
 import React from 'react';
 import propTypes from 'prop-types';
-// import './ListingForm.scss';
+import './Form.scss';
 import authRequests from '../../helpers/data/authRequests';
 // import tutorialRequest from '../../helpers/data/listingRequests';
 
 const defaultMaterials = {
   name: '',
-  // link: '',
+  link: '',
   // radioButton: '',
   tutorialRadioButton: false,
 };
@@ -37,6 +37,10 @@ class Form extends React.Component {
 
   nameChange = (e) => {
     this.formFieldStringState('name', e);
+  }
+
+  linkChange = (e) => {
+    this.formFieldStringState('link', e);
   }
 
   // radioButtonChange = (e) => {
@@ -77,53 +81,93 @@ class Form extends React.Component {
   render() {
     const { newMaterial } = this.state;
     const { isEditing, radioButton, handleChange } = this.props;
-    const title = () => {
-      if (isEditing) {
-        return <h2>Edit Listing: </h2>;
-      }
-      return <h2>Add New Listing: </h2>;
-    };
     return (
       <div className="listing-form col">
-        {title()}
       <form onSubmit={this.formSubmit}>
       <div className="form-group">
-        <label htmlFor="address">Name:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="address"
-            aria-describedby="addressHelp"
-            placeholder="234 Edge Moor Dr, 21783"
-            value={newMaterial.name}
-            onChange={this.nameChange}
-            />
+        <div className="d-flex flex-row">
+          <label htmlFor="address" className=" wrap-form">Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="address"
+              aria-describedby="addressHelp"
+              placeholder="234 Edge Moor Dr, 21783"
+              value={newMaterial.name}
+              onChange={this.nameChange}
+              />
+          </div>
+          <div className="d-flex flex-row wrap-form">
+              <label htmlFor="link">Link</label>
+            <input
+              type="text"
+              className="form-control"
+              id="link"
+              aria-describedby="linkHelp"
+              placeholder="www.habesha.com"
+              value={newMaterial.link}
+              onChange={this.linkChange}
+              />
+          </div>
         </div>
+
         {/* <label>Name:</label>
         <input type="input"></input>
        <label>Link:</label>
         <input type="input"></input> */}
-          <div>
-            <input type="radio"
-              id="radio_tutorials"
-              // name="radio_tutorials"
-              value="radio_tutorials"
-              checked={radioButton === 'radio_tutorials'}
-              onChange={handleChange}
-            />
-              <label>Tutorials</label>
-            <input type="radio"
-              id="radio_blogs"
-              name="radio_blogs"
-              value="radio_blogs"
-              checked={radioButton === 'radio_blogs'}
-              onChange={handleChange}
+          <div className="radio_wrap">
+            <div className="radio_buttons">
+            <label>
+              <input type="radio"
+                className="radio"
+                id="radio_tutorials"
+                name="radio_tutorials"
+                value="radio_tutorials"
+                checked={radioButton === 'radio_tutorials'}
+                onChange={handleChange}
               />
-            <label>Blogs</label>
-            <input type="radio" id="resources" name="resources" value="resources"/>
-              <label>Resources</label>
-            <input type="radio" id="podcasts" name="podcasts" value="podcasts"/>
-              <label>Podcasts</label>
+              Tutorials
+            </label>
+              </div>
+              <div className="radio_buttons">
+            <label>
+              <input type="radio"
+                id="radio_blogs"
+                className="radio"
+                name="radio_blogs"
+                value="radio_blogs"
+                checked={radioButton === 'radio_blogs'}
+                onChange={handleChange}
+              />
+              Blogs
+            </label>
+            </div>
+            <div className="radio_buttons">
+            <label>
+              <input type="radio"
+                className="radio"
+                id="radio_resources"
+                name="radio_resources"
+                value="radio_resources"
+                checked={radioButton === 'radio_resources'}
+                onChange={handleChange}
+              />
+            Resources
+            </label>
+            </div>
+            <div className="radio_buttons">
+            <label>
+              <input type="radio"
+                className="radio"
+                id="radio_podcasts"
+                name="radio_podcasts"
+                value="radio_podcasts"
+                checked={radioButton === 'radio_podcasts'}
+                onChange={handleChange}
+              />
+              Podcasts
+            </label>
+              </div>
               </div>
         <button className="btn btn-danger">+</button>
       </form>
@@ -133,28 +177,3 @@ class Form extends React.Component {
 }
 
 export default Form;
-
-// class Form extends React.Component {
-//   render() {
-//     return (
-//       <div className="listings col">
-//        <label>Name:</label>
-//         <input type="input"></input>
-//        <label>Link:</label>
-//         <input type="input"></input>
-//           <div>
-//             <input type="radio" id="tutorial" name="tutorial" value="tutorial"/>
-//               <label for="Tutorials">Tutorials</label>
-//             <input type="radio" id="blogs" name="blogs" value="blogs"/>
-//               <label for="Blogs">Blogs</label>
-//             <input type="radio" id="resources" name="resources" value="resources"/>
-//               <label for="Resources">Resources</label>
-//             <input type="radio" id="podcasts" name="podcasts" value="podcasts"/>
-//               <label for="Podcasts">Podcasts</label>
-//           </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Form;
