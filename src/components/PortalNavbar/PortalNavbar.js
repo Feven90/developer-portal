@@ -3,10 +3,10 @@ import React from 'react';
 import {
   TabContent, TabPane, Nav, NavItem, NavLink, Card, Button, CardTitle, CardText, Row, Col,
 } from 'reactstrap';
+import classnames from 'classnames';
 import Tutorials from '../Tutorials/Tutorials';
 import Blogs from '../Blogs/Blogs';
 import Podcasts from '../Podcasts/Podcasts';
-import classnames from 'classnames';
 
 class TabsComponent extends React.Component {
   constructor(props) {

@@ -6,7 +6,7 @@ import authRequests from '../../helpers/data/authRequests';
 
 const defaultMaterials = {
   name: '',
-  // link: '',
+  link: '',
   // radioButton: '',
   tutorialRadioButton: false,
 };
@@ -37,6 +37,10 @@ class Form extends React.Component {
 
   nameChange = (e) => {
     this.formFieldStringState('name', e);
+  }
+
+  linkChange = (e) => {
+    this.formFieldStringState('link', e);
   }
 
   // radioButtonChange = (e) => {
@@ -79,20 +83,34 @@ class Form extends React.Component {
     const { isEditing, radioButton, handleChange } = this.props;
     return (
       <div className="listing-form col">
-       <h2>Add New Material: </h2>
       <form onSubmit={this.formSubmit}>
       <div className="form-group">
-        <label htmlFor="address">Name:</label>
-          <input
-            type="text"
-            className="form-control"
-            id="address"
-            aria-describedby="addressHelp"
-            placeholder="234 Edge Moor Dr, 21783"
-            value={newMaterial.name}
-            onChange={this.nameChange}
-            />
+        <div className="d-flex flex-row">
+          <label htmlFor="address" className=" wrap-form">Name</label>
+            <input
+              type="text"
+              className="form-control"
+              id="address"
+              aria-describedby="addressHelp"
+              placeholder="234 Edge Moor Dr, 21783"
+              value={newMaterial.name}
+              onChange={this.nameChange}
+              />
+          </div>
+          <div className="d-flex flex-row wrap-form">
+              <label htmlFor="link">Link</label>
+            <input
+              type="text"
+              className="form-control"
+              id="link"
+              aria-describedby="linkHelp"
+              placeholder="www.habesha.com"
+              value={newMaterial.link}
+              onChange={this.linkChange}
+              />
+          </div>
         </div>
+
         {/* <label>Name:</label>
         <input type="input"></input>
        <label>Link:</label>
@@ -159,28 +177,3 @@ class Form extends React.Component {
 }
 
 export default Form;
-
-// class Form extends React.Component {
-//   render() {
-//     return (
-//       <div className="listings col">
-//        <label>Name:</label>
-//         <input type="input"></input>
-//        <label>Link:</label>
-//         <input type="input"></input>
-//           <div>
-//             <input type="radio" id="tutorial" name="tutorial" value="tutorial"/>
-//               <label for="Tutorials">Tutorials</label>
-//             <input type="radio" id="blogs" name="blogs" value="blogs"/>
-//               <label for="Blogs">Blogs</label>
-//             <input type="radio" id="resources" name="resources" value="resources"/>
-//               <label for="Resources">Resources</label>
-//             <input type="radio" id="podcasts" name="podcasts" value="podcasts"/>
-//               <label for="Podcasts">Podcasts</label>
-//           </div>
-//       </div>
-//     );
-//   }
-// }
-
-// export default Form;

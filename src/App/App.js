@@ -6,7 +6,8 @@ import connection from '../helpers/data/connection';
 import Auth from '../components/Auth/Auth';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Profile from '../components/Profile/Profile';
-import profileRequest from '../helpers/data/profileRequests';
+// import profileRequest from '../helpers/data/profileRequests';
+import githubData from '../helpers/data/profileRequests';
 import podcastRequests from '../helpers/data/podcastRequests';
 import Form from '../components/Form/Form';
 import MyNavbar from '../components/MyNavbar/MyNavbar';
@@ -31,26 +32,47 @@ class App extends Component {
       podcasts: [],
       radioButton: '',
       githubUsername: '',
-      commits: '',
+      // commits: '',
+      commitCount: 0,
+      profile: [],
       // blog_tab: true,
     };
 
+    getGithubData = (users, gitHubTokenStorage) => {
+      console.log(users);
+      console.log(gitHubTokenStorage);
+      githubData.getUser(gitHubTokenStorage)
+        .then((profile) => {
+          this.setState({ profile });
+          this.setState({ authed: true });
+        });
+      githubData.getUserEvents(users, gitHubTokenStorage)
+        .then((commitCount) => {
+          this.setState({ commitCount });
+        })
+        .catch(err => console.error('error with github user events GET', err));
+    }
+
     componentDidMount() {
       connection();
-      if (this.state.githubUsername && this.state.profile.length === 0) {
-        profileRequest.getProfileRequest(this.state.githubUsername)
-          .then((profile) => {
-            this.setState({ profile });
-          })
-          .catch(err => console.error(err));
-      }
-      if (this.state.githubUsername && this.state.profile.length === 0) {
-        profileRequest.getUserCommit(this.state.githubUsername)
-          .then((commits) => {
-            this.setState({ commits });
-          })
-          .catch(err => console.error(err));
-      }
+      // if (this.state.githubUsername) {
+      //   profileRequest.getProfileRequest(
+      //     this.state.githubUsername && this.state.profile.length === 0,
+      //   )
+      //     .then((profile) => {
+      //       this.setState({ profile });
+      //       console.log(profile);
+      //     })
+      //     .catch(err => console.error(err));
+      // }
+      // if (this.state.githubUsername) {
+      // eslint-disable-next-line max-len
+      //   profileRequest.getUserCommit(this.state.githubUsername && this.state.profile.length === 0)
+      //     .then((commits) => {
+      //       this.setState({ commits });
+      //     })
+      //     .catch(err => console.error(err));
+      // }
 
       tutorialRequests.getRequest()
         .then((tutorials) => {
@@ -81,9 +103,11 @@ class App extends Component {
       this.removeListener = firebase.auth().onAuthStateChanged((user) => {
         if (user) {
           const users = sessionStorage.getItem('githubUsername');
+          const gitHubTokenStorage = sessionStorage.getItem('githubToken');
           this.setState({
             authed: true,
             githubUsername: users,
+            githubToken: gitHubTokenStorage,
           });
         } else {
           this.setState({
@@ -97,11 +121,20 @@ class App extends Component {
       this.removeListener();
     }
 
+    // isAuthenticated = (username) => {
+    //   this.setState({ authed: true, githubUsername: username });
+    //   sessionStorage.setItem('githubUsername', username);
+    // }
 
-isAuthenticated = (username) => {
-  this.setState({ authed: true, githubUsername: username });
-  sessionStorage.setItem('githubUsername', username);
-}
+    isAuthenticated = (username, accessToken) => {
+      sessionStorage.setItem('githubUsername', username);
+      sessionStorage.setItem('githubToken', accessToken);
+      this.getGithubData(username, accessToken);
+      this.setState({
+        githubUsername: username,
+        githubToken: accessToken,
+      });
+    }
 
 deleteOne = (tutorialId) => {
   tutorialRequests.delteTutorials(tutorialId)
@@ -186,9 +219,14 @@ formSubmitEvent = (newMaterial) => {
 }
 
 render() {
+  const {
+    authed,
+    isEditing,
+  } = this.state;
   const logoutClickEvent = () => {
     authRequests.logoutUser();
-    this.setState({ authed: false, githubUsername: '' });
+    sessionStorage.clear();
+    this.setState({ authed: false, githubUsername: '', githubToken: '' });
   };
   if (!this.state.authed) {
     return (
@@ -208,10 +246,12 @@ render() {
         {/* /> */}
         <div className="all">
         <div className="col-3 profile">
-          <Profile
+          {/* <Profile
           profile={this.state.profile}
           commits={this.state.commits}
-          />
+          /> */}
+  { authed
+&& <Profile isAuthed={authed} profile={this.state.profile} commitCount={this.state.commitCount} /> }
         </div>
         <div className="wrap">
         <Form radioButton={this.state.radioButton}
