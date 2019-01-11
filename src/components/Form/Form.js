@@ -85,7 +85,7 @@ class Form extends React.Component {
       <div className="listing-form col">
       <form onSubmit={this.formSubmit}>
       <div className="form-group">
-        <div className="d-flex flex-row">
+        <div className="d-flex flex-row wrap-name">
           <label htmlFor="address" className=" wrap-form">Name</label>
             <input
               type="text"
@@ -97,8 +97,8 @@ class Form extends React.Component {
               onChange={this.nameChange}
               />
           </div>
-          <div className="d-flex flex-row wrap-form">
-              <label htmlFor="link">Link</label>
+          <div className="d-flex flex-row">
+              <label htmlFor="link" className=" wrap-form-link">Link</label>
             <input
               type="text"
               className="form-control"
@@ -115,6 +115,7 @@ class Form extends React.Component {
         <input type="input"></input>
        <label>Link:</label>
         <input type="input"></input> */}
+        <div className="radio_add_button">
           <div className="radio_wrap">
             <div className="radio_buttons">
             <label>
@@ -169,7 +170,10 @@ class Form extends React.Component {
             </label>
               </div>
               </div>
+              <div>
         <button className="btn btn-danger">+</button>
+        </div>
+        </div>
       </form>
   </div>
     );
