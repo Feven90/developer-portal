@@ -35,12 +35,12 @@ class App extends Component {
       // commits: '',
       commitCount: 0,
       profile: [],
+      user: [],
+      githubToken: '',
       // blog_tab: true,
     };
 
     getGithubData = (users, gitHubTokenStorage) => {
-      console.log(users);
-      console.log(gitHubTokenStorage);
       githubData.getUser(gitHubTokenStorage)
         .then((profile) => {
           this.setState({ profile });
